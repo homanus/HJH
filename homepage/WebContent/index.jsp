@@ -30,7 +30,7 @@ body {font-family: "Open Sans"}
       <!-- Blog entry -->
       <div class="w3-container w3-white w3-margin w3-padding-large">
         <div class="w3-center">
-          <h3>TITLE HEADING_TEST</h3>
+          <h3>TITLE HEADING</h3>
           <h5>Title description, <span class="w3-opacity">May 2, 2016</span></h5>
         </div>
 
