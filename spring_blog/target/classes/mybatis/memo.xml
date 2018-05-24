@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="memo">
+
+<select id="checkRefnum" resultType="int" parameterType="int">
+SELECT count(*) FROM memo
+WHERE refnum = #{memono}
+</select>
+
+<select id="total" resultType="int" parameterType="int">
+SELECT COUNT(*) as cnt FROM memo
+<where>
+	<choose>
+		<when test="col=='title'">
+		title like '%'||#{word}||'%'
+		</when>
+		<when test="col=='content'">
+		content like '%'||#{word}||'%'
+		</when>
+	</choose>
+</where>
+</select>
+
+<select id="list" resultType="MemoDTO" parameterType="Map">
+SELECT memono, title, wdate, viewcnt, grpno, indent, ansnum, r
+FROM(
+	SELECT memono, title, wdate, viewcnt, grpno, indent, ansnum, rownum r
+		FROM(
+		SELECT memono,title,
+		to_char(wdate,'yyyy-mm-dd')wdate, viewcnt,
+		grpno,indent,ansnum
+		FROM memo
+		<where>
+			<choose>
+				<when test="col=='title'">
+				title like '%'||#{word}||'%'
+				</when>
+				<when test="col=='content'">
+				content like '%'||#{word}||'%'
+				</when>
+			</choose>
+		</where>
+		ORDER BY grpno desc,ansnum
+		)
+	)
+	<![CDATA[
+	WHERE r>=#{sno} AND r<=#{eno}
+	]]>
+</select>
+
+<insert id="create" parameterType="MemoDTO">
+INSERT INTO memo(
+memono, title, content,wdate,grpno)
+VALUES(
+memo_seq.nextval, #{title}, #{content}, sysdate,
+(SELECT nvl(max(grpno),0)+1 FROM memo))
+</insert>
+
+<select id="read" parameterType="int" resultType="MemoDTO">
+SELECT memono,title,content,
+to_char(wdate,'yyyy-mm-dd')wdate, viewcnt
+from memo
+WHERE memono = #{memono}
+</select>
+
+<update id="update" parameterType="MemoDTO">
+UPDATE memo
+SET title = #{title}, content= #{content}
+WHERE memono = #{memono}
+</update>
+
+<delete id="delete" parameterType="int">
+DELETE FROM memo
+WHERE memono = #{memono}
+</delete>
+
+<update id="upViewcnt" parameterType="int">
+UPDATE memo
+SET viewcnt = viewcnt + 1
+WHERE memono = #{memono}
+</update>
+
+<select id="readReply" parameterType="int" resultType="MemoDTO">
+SELECT memono, grpno, indent, ansnum, title
+FROM memo
+WHERE memono = #{memono}
+</select>
+
+<update id="upAnsnum" parameterType="Map">
+UPDATE memo SET ansnum = ansnum+1
+WHERE grpno = #{grpno}
+AND ansnum > #{ansnum}
+</update>
+
+<insert id="createReply" parameterType="MemoDTO">
+INSERT INTO memo(
+memono, title, content, wdate,
+grpno, indent, ansnum, refnum)
+VALUES(
+memo_seq.nextval, #{title}, #{content}, sysdate, 
+#{grpno}, #{indent}+1, #{ansnum}+1, #{memono}
+)
+</insert>
+
+</mapper>

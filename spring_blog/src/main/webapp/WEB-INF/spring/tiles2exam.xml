@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE  tiles-definitions PUBLIC 
+    "-//Aapche Software Foundation//DTD Tiles Configuration 2.0//EN" 
+    "http://tiles.apache.org/dtds/tiles-config_2_0.dtd"> 
+
+<tiles-definitions>
+     <definition name="main" template="/WEB-INF/views/menu/template.jsp"> 
+        <put-attribute name="header" value="/WEB-INF/views/menu/top.jsp" /> 
+        <put-attribute name="footer" value="/WEB-INF/views/menu/bottom.jsp" /> 
+    </definition>
+    <!-- HOME -->
+     <definition name="/home" extends="main"> 
+        <put-attribute name="title" value="기본 페이지 입니다." /> 
+        <put-attribute name="body" value="/WEB-INF/views/home.jsp" /> 
+    </definition>
+    <!-- BBS -->
+	<definition name="/bbs/list" extends="main"> 
+        <put-attribute name="title" value="게시판 목록" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/bbs/list.jsp" /> 
+    </definition>   
+    <definition name="/bbs/create" extends="main"> 
+        <put-attribute name="title" value="게시판 생성" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/bbs/createform.jsp" /> 
+    </definition>   
+    <definition name="/bbs/update" extends="main"> 
+        <put-attribute name="title" value="게시판 수정" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/bbs/updateform.jsp" /> 
+    </definition>
+    <definition name="/bbs/read" extends="main"> 
+        <put-attribute name="title" value="게시판 읽기" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/bbs/read.jsp" /> 
+    </definition>
+    <definition name="/bbs/reply" extends="main"> 
+        <put-attribute name="title" value="게시판 답변" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/bbs/replyform.jsp" /> 
+    </definition>
+    <definition name="/bbs/delete" extends="main"> 
+        <put-attribute name="title" value="게시판 삭제" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/bbs/deleteform.jsp" /> 
+    </definition>
+    <!-- GUEST -->
+    <definition name="/guest/list" extends="main"> 
+        <put-attribute name="title" value="방명록 목록" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/guest/list.jsp" /> 
+    </definition>
+    <definition name="/guest/update" extends="main"> 
+        <put-attribute name="title" value="방명록 수정" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/guest/updateForm.jsp" /> 
+    </definition>
+
+    <!-- MEMO -->
+    <definition name="/memo/create" extends="main"> 
+        <put-attribute name="title" value="메모 생성" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/memo/memoCreate.jsp" /> 
+    </definition>
+    <definition name="/memo/list" extends="main"> 
+        <put-attribute name="title" value="메모 목록" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/memo/list.jsp" /> 
+    </definition>
+    <definition name="/memo/read" extends="main"> 
+        <put-attribute name="title" value="메모 읽기" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/memo/read.jsp" /> 
+    </definition>
+    <definition name="/memo/delete" extends="main"> 
+        <put-attribute name="title" value="메모 삭제" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/memo/deleteForm.jsp" /> 
+    </definition>
+    <definition name="/memo/reply" extends="main"> 
+        <put-attribute name="title" value="메모 답변" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/memo/replyForm.jsp" /> 
+    </definition>
+    <definition name="/memo/update" extends="main"> 
+        <put-attribute name="title" value="메모 수정" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/memo/updateForm.jsp" /> 
+    </definition>
+    <!-- IMAGE -->
+    <definition name="/image/create" extends="main"> 
+        <put-attribute name="title" value="이미지 등록" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/image/createForm.jsp" /> 
+    </definition>
+    <definition name="/image/delete" extends="main"> 
+        <put-attribute name="title" value="이미지 삭제" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/image/deleteForm.jsp" /> 
+    </definition>
+    <definition name="/image/list" extends="main"> 
+        <put-attribute name="title" value="이미지 목록" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/image/list.jsp" /> 
+    </definition>
+    <definition name="/image/read" extends="main"> 
+        <put-attribute name="title" value="이미지 내용" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/image/read.jsp" /> 
+    </definition>
+    <definition name="/image/update" extends="main"> 
+        <put-attribute name="title" value="이미지 수정" ></put-attribute> 
+        <put-attribute name="body" value="/WEB-INF/views/image/updateForm.jsp" /> 
+    </definition>
+    
+   
+           
+   
+</tiles-definitions> 
